@@ -1,0 +1,28 @@
+name: Reto 2 de GHA course
+run-name: Triggers challenge
+
+on:
+  push:
+    branches:
+      - main
+  check_run:
+    types: [rerequested, completed]
+  issue_comment:
+    types: [created, deleted]
+  pull_request:
+    types: [ opened, synchronize, reopened ]
+    paths:
+      - '**.py'
+  schedule:
+    - cron: '15 22 * * *'
+
+jobs:
+  segundo-workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Crear variable
+        run: echo "USERNAME=${{ github.actor }}" >> $GITHUB_ENV
+      - name: Ejecutar script
+        run: python hello_world.py
