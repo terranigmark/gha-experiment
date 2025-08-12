@@ -13,8 +13,6 @@ on:
     types: [ opened, synchronize, reopened ]
     paths:
       - '**.py'
-  schedule:
-    - cron: '15 22 * * *'
 
 jobs:
   segundo-workflow:
